@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Acquista biglietto</h2>
+<p><b>{{ route.origin }} → {{ route.destination }}</b><br>
+Partenza: {{ route.departureTime }}<br>
+Prezzo: {{ route.price }} € a posto</p>
+
+<form method="post">
+    {% csrf_token %}
+    <label>Numero di posti</label>
+    <input type="number" name="quantitySeats" value="1" min="1" required>
+    <label>Metodo di pagamento</label>
+    <select name="paymentMethod">
+        <option value="NEXI">Nexi</option>
+        <option value="PAYPAL">PayPal</option>
+    </select>
+    <button type="submit">Conferma acquisto</button>
+</form>
+{% endblock %}

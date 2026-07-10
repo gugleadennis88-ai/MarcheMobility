@@ -1,0 +1,21 @@
+{% extends 'core/controller/base.html' %}
+{% block content %}
+<h2>Ciao, {{ controller.firstName }} {{ controller.lastName }}</h2>
+<div style="display:flex; gap:16px; margin-top:20px; flex-wrap:wrap;">
+    <a href="{% url 'core:verify_ticket' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #2e7d4f; border-radius:8px; padding:20px; text-align:center; color:#2e7d4f;">
+            Verifica biglietto
+        </div>
+    </a>
+    <a href="{% url 'core:view_fines' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #2e7d4f; border-radius:8px; padding:20px; text-align:center; color:#2e7d4f;">
+            Visualizza multe
+        </div>
+    </a>
+</div>
+<a href="{% url 'core:controller_send_report' %}" style="text-decoration:none;">
+    <div style="margin-top:16px; border:2px solid #b02a37; border-radius:8px; padding:16px; text-align:center; color:#b02a37;">
+        Segnala anomalia
+    </div>
+</a>
+{% endblock %}

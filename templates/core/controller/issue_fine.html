@@ -1,0 +1,15 @@
+{% extends 'core/controller/base.html' %}
+{% block content %}
+<h2>Emetti multa</h2>
+<p>Esito verifica: <b>{{ inspection.result }}</b></p>
+<form method="post">
+    {% csrf_token %}
+    <label>Importo (EUR)</label>
+    <input type="number" step="0.01" name="amount" required>
+    <label>Motivazione</label>
+    <input type="text" name="reason" required>
+    <label>Luogo</label>
+    <input type="text" name="location">
+    <button type="submit">Conferma multa</button>
+</form>
+{% endblock %}

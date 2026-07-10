@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Ciao, {{ user.firstName }} {{ user.lastName }}</h2>
+
+<div style="display:flex; gap:16px; margin-top:20px; flex-wrap:wrap;">
+    <a href="{% url 'core:valid_tickets' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #1f4e79; border-radius:8px; padding:20px; text-align:center; color:#1f4e79;">
+            🎫<br><b>I miei biglietti</b>
+        </div>
+    </a>
+    <a href="{% url 'core:search_route' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #1f4e79; border-radius:8px; padding:20px; text-align:center; color:#1f4e79;">
+            🔍<br><b>Ricerca corse</b>
+        </div>
+    </a>
+    <a href="{% url 'core:ticket_history' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #1f4e79; border-radius:8px; padding:20px; text-align:center; color:#1f4e79;">
+            📜<br><b>Storico biglietti</b>
+        </div>
+    </a>
+</div>
+
+<a href="{% url 'core:send_report' %}" style="text-decoration:none;">
+    <div style="margin-top:16px; border:2px solid #b02a37; border-radius:8px; padding:16px; text-align:center; color:#b02a37;">
+        ⚠️ <b>Segnala anomalia</b>
+    </div>
+</a>
+
+<div style="margin-top:24px; background:#1f4e79; color:white; padding:16px; border-radius:8px;">
+    <h3 style="margin-top:0;">📢 Notizie</h3>
+    {% if notifiche %}
+        <ul>
+        {% for n in notifiche %}
+            <li><b>{{ n.title }}</b> — {{ n.message }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessuna notizia al momento.</p>
+    {% endif %}
+</div>
+{% endblock %}

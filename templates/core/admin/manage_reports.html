@@ -1,0 +1,52 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Gestione segnalazioni</h2>
+<h3>Segnalazioni Utenti</h3>
+<table>
+    <tr><th>Titolo</th><th>Messaggio</th><th>Status</th><th>Azione</th></tr>
+    {% for r in user_reports %}
+    <tr>
+        <td>{{ r.title }}</td>
+        <td>{{ r.message }}</td>
+        <td>{{ r.status }}</td>
+        <td>
+            {% if r.status != 'CLOSED' %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="report_type" value="user">
+                <input type="hidden" name="report_id" value="{{ r.idReport }}">
+                <input type="text" name="response" placeholder="Risposta" required style="width:auto;">
+                <button class="action-btn" type="submit">Rispondi e chiudi</button>
+            </form>
+            {% else %}Chiusa{% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nessuna segnalazione.</td></tr>
+    {% endfor %}
+</table>
+<h3>Segnalazioni Controllori</h3>
+<table>
+    <tr><th>Titolo</th><th>Messaggio</th><th>Status</th><th>Azione</th></tr>
+    {% for r in controller_reports %}
+    <tr>
+        <td>{{ r.title }}</td>
+        <td>{{ r.message }}</td>
+        <td>{{ r.status }}</td>
+        <td>
+            {% if r.status != 'CLOSED' %}
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="report_type" value="controller">
+                <input type="hidden" name="report_id" value="{{ r.idReportController }}">
+                <input type="text" name="response" placeholder="Risposta" required style="width:auto;">
+                <button class="action-btn" type="submit">Rispondi e chiudi</button>
+            </form>
+            {% else %}Chiusa{% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nessuna segnalazione.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Ciao, {{ admin.firstName }}</h2>
+<div style="display:flex; gap:16px; margin-top:20px; flex-wrap:wrap;">
+    <a href="{% url 'core:create_controller' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #b02a37; border-radius:8px; padding:20px; text-align:center; color:#b02a37;">
+            Crea account controllore
+        </div>
+    </a>
+    <a href="{% url 'core:manage_users' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #b02a37; border-radius:8px; padding:20px; text-align:center; color:#b02a37;">
+            Gestione utenti
+        </div>
+    </a>
+    <a href="{% url 'core:manage_controllers' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #b02a37; border-radius:8px; padding:20px; text-align:center; color:#b02a37;">
+            Gestione controllori
+        </div>
+    </a>
+</div>
+<div style="display:flex; gap:16px; margin-top:16px; flex-wrap:wrap;">
+    <a href="{% url 'core:manage_routes' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #b02a37; border-radius:8px; padding:20px; text-align:center; color:#b02a37;">
+            Gestione corse e tariffe
+        </div>
+    </a>
+    <a href="{% url 'core:send_notification' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #b02a37; border-radius:8px; padding:20px; text-align:center; color:#b02a37;">
+            Notifiche globali
+        </div>
+    </a>
+    <a href="{% url 'core:manage_reports' %}" style="flex:1; min-width:140px; text-decoration:none;">
+        <div style="border:2px solid #b02a37; border-radius:8px; padding:20px; text-align:center; color:#b02a37;">
+            Gestione segnalazioni
+        </div>
+    </a>
+</div>
+{% endblock %}

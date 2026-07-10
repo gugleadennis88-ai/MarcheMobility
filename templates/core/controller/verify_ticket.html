@@ -1,0 +1,27 @@
+{% extends 'core/controller/base.html' %}
+{% block content %}
+<h2>Verifica biglietto</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Codice QR</label>
+    <input type="text" name="qrCodeData" placeholder="es. A1B2C3D4E5F6" required>
+    <button type="submit">Scansiona</button>
+</form>
+
+{% if inspection %}
+<div style="margin-top:20px; padding:16px; border-radius:8px;
+    {% if inspection.result == InspectionResult.VALID %}background:#d4edda;
+    {% elif inspection.result == InspectionResult.EXPIRED %}background:#fff3cd;
+    {% else %}background:#f8d7da;{% endif %}">
+    <h3>Esito: {{ inspection.result }}</h3>
+    {% if inspection.ticket %}
+        <p>Biglietto: {{ inspection.ticket.route }} - {{ inspection.ticket.quantitySeats }} posti</p>
+    {% else %}
+        <p>Nessun biglietto trovato con questo codice.</p>
+    {% endif %}
+    {% if inspection.result != InspectionResult.VALID %}
+    <a href="{% url 'core:issue_fine' inspection.idInspection %}">Emetti multa per questa verifica</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

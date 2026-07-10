@@ -1,0 +1,19 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Invia notifica globale</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Titolo</label>
+    <input type="text" name="title" required>
+    <label>Messaggio</label>
+    <input type="text" name="message" required>
+    <label>Tipo</label>
+    <select name="type">
+        <option value="SERVICE_UPDATE">Aggiornamento servizio</option>
+        <option value="MAINTENANCE">Manutenzione</option>
+        <option value="MARKETING">Marketing</option>
+        <option value="GENERAL">Generale</option>
+    </select>
+    <button type="submit">Invia a tutti gli utenti e controllori</button>
+</form>
+{% endblock %}

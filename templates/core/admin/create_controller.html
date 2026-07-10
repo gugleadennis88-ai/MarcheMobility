@@ -1,0 +1,20 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Crea account controllore</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Nome</label>
+    <input type="text" name="firstName" required>
+    <label>Cognome</label>
+    <input type="text" name="lastName" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Numero di telefono</label>
+    <input type="text" name="phoneNumber" required>
+    <label>Codice Fiscale</label>
+    <input type="text" name="codiceFiscale" required maxlength="16">
+    <label>Password provvisoria</label>
+    <input type="password" name="password" required>
+    <button type="submit">Crea account</button>
+</form>
+{% endblock %}

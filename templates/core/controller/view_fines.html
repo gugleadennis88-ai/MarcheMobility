@@ -1,0 +1,18 @@
+{% extends 'core/controller/base.html' %}
+{% block content %}
+<h2>Multe emesse</h2>
+{% if fines %}
+<table>
+    <tr><th>Data</th><th>Importo</th><th>Motivazione</th></tr>
+    {% for fine in fines %}
+    <tr>
+        <td>{{ fine.date }}</td>
+        <td>{{ fine.amount }} EUR</td>
+        <td>{{ fine.reason }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Nessuna multa emessa finora.</p>
+{% endif %}
+{% endblock %}

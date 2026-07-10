@@ -1,0 +1,17 @@
+{% extends 'core/base_auth.html' %}
+{% block content %}
+<h2>Accedi</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button type="submit">Accedi</button>
+</form>
+<p class="switch">
+    <a href="{% url 'core:controller_login' %}">Login Controllore</a> ·
+    <a href="{% url 'core:admin_login' %}">Login Admin</a>
+</p>
+<p class="switch">Non hai un account? <a href="{% url 'core:register' %}">Registrati</a></p>
+{% endblock %}

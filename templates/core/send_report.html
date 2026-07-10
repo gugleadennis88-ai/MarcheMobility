@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Segnala un'anomalia</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Titolo</label>
+    <input type="text" name="title" required>
+    <label>Descrizione</label>
+    <input type="text" name="message" required>
+    <button type="submit">Invia segnalazione</button>
+</form>
+{% endblock %}

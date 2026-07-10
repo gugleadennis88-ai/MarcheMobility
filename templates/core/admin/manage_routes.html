@@ -1,0 +1,43 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Gestione corse</h2>
+<h3>Aggiungi corsa</h3>
+<form method="post">
+    {% csrf_token %}
+    <label>Origine</label>
+    <input type="text" name="origin" required>
+    <label>Destinazione</label>
+    <input type="text" name="destination" required>
+    <label>Durata (minuti)</label>
+    <input type="number" name="duration" required>
+    <label>Partenza</label>
+    <input type="datetime-local" name="departureTime" required>
+    <label>Arrivo</label>
+    <input type="datetime-local" name="arrivalTime" required>
+    <label>Giorni della settimana</label>
+    <input type="text" name="daysOfWeek" placeholder="Lunedi,Mercoledi,Venerdi" required>
+    <label>Prezzo (EUR)</label>
+    <input type="number" step="0.01" name="price" required>
+    <button type="submit">Aggiungi corsa</button>
+</form>
+<h3>Corse esistenti</h3>
+<table>
+    <tr><th>Tratta</th><th>Partenza</th><th>Prezzo</th><th></th></tr>
+    {% for r in routes %}
+    <tr>
+        <td>{{ r.origin }} -> {{ r.destination }}</td>
+        <td>{{ r.departureTime }}</td>
+        <td>{{ r.price }} EUR</td>
+        <td>
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="route_id" value="{{ r.idRoute }}">
+                <button class="action-btn" name="action" value="delete">Elimina</button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nessuna corsa presente.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'core/base_auth.html' %}
+{% block content %}
+<h2>Crea un account</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Nome</label>
+    <input type="text" name="firstName" required>
+    <label>Cognome</label>
+    <input type="text" name="lastName" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Numero di telefono</label>
+    <input type="text" name="phoneNumber" required>
+    <label>Codice Fiscale</label>
+    <input type="text" name="codiceFiscale" required maxlength="16">
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button type="submit">Registrati</button>
+</form>
+<p class="switch">Hai già un account? <a href="{% url 'core:login' %}">Accedi</a></p>
+{% endblock %}

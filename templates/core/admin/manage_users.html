@@ -1,0 +1,25 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Gestione utenti</h2>
+<table>
+    <tr><th>Nome</th><th>Email</th><th>Status</th><th>Azioni</th></tr>
+    {% for u in users %}
+    <tr>
+        <td>{{ u.firstName }} {{ u.lastName }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.status }}</td>
+        <td>
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="user_id" value="{{ u.idUser }}">
+                <button class="action-btn" name="action" value="suspend">Sospendi</button>
+                <button class="action-btn" name="action" value="reactivate">Riattiva</button>
+                <button class="action-btn" name="action" value="delete">Elimina</button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nessun utente registrato.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

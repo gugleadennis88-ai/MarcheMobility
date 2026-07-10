@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Ciao {{ user.firstName }}, cerca la tua corsa</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Città di partenza</label>
+    <input type="text" name="origin" placeholder="es. Ancona">
+    <label>Città di arrivo</label>
+    <input type="text" name="destination" placeholder="es. Pesaro">
+    <button type="submit">Cerca</button>
+</form>
+
+{% if results %}
+<h3>Corse disponibili</h3>
+<table>
+    <tr><th>Tratta</th><th>Partenza</th><th>Arrivo</th><th>Prezzo</th><th></th></tr>
+    {% for route in results %}
+    <tr>
+        <td>{{ route.origin }} → {{ route.destination }}</td>
+        <td>{{ route.departureTime }}</td>
+        <td>{{ route.arrivalTime }}</td>
+        <td>{{ route.price }} €</td>
+        <td><a href="{% url 'core:purchase_ticket' route.idRoute %}">Acquista</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% elif request.method == 'POST' %}
+<p>Nessuna corsa trovata.</p>
+{% endif %}
+{% endblock %}

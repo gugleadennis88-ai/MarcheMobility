@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>{{ titolo|default:"I tuoi biglietti" }}</h2>
+{% if tickets %}
+<table>
+    <tr><th>Tratta</th><th>Posti</th><th>Codice QR</th><th>Immagine</th><th>Stato</th><th>Totale</th></tr>
+    {% for ticket in tickets %}
+    <tr>
+        <td>{{ ticket.route }}</td>
+        <td>{{ ticket.quantitySeats }}</td>
+        <td>{{ ticket.qrCodeData }}</td>
+        <td><img src="{% url 'core:ticket_qr' ticket.idTicket %}" alt="QR" width="90" height="90"></td>
+        <td>{{ ticket.status }}</td>
+        <td>{{ ticket.getTotalPrice }} €</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>Non hai ancora acquistato nessun biglietto.</p>
+{% endif %}
+{% endblock %}

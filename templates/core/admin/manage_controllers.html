@@ -1,0 +1,25 @@
+{% extends 'core/admin/base.html' %}
+{% block content %}
+<h2>Gestione controllori</h2>
+<table>
+    <tr><th>Nome</th><th>Email</th><th>Attivo</th><th>Azioni</th></tr>
+    {% for c in controllers %}
+    <tr>
+        <td>{{ c.firstName }} {{ c.lastName }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.isActive }}</td>
+        <td>
+            <form method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="controller_id" value="{{ c.idController }}">
+                <button class="action-btn" name="action" value="suspend">Sospendi</button>
+                <button class="action-btn" name="action" value="reactivate">Riattiva</button>
+                <button class="action-btn" name="action" value="delete">Elimina</button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">Nessun controllore registrato.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

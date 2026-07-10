@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>MarcheMobility - Login Admin</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 480px; margin: 60px auto; padding: 0 20px; color: #222; }
+        h1 { color: #b02a37; }
+        form { margin-top: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
+        button { margin-top: 16px; padding: 10px 18px; background: #b02a37; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .messages { list-style: none; padding: 0; }
+        .messages li { padding: 10px; margin-bottom: 8px; border-radius: 4px; }
+        .messages .success { background: #d4edda; color: #155724; }
+        .messages .error { background: #f8d7da; color: #721c24; }
+        .switch { margin-top: 16px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>MarcheMobility - Admin</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Accedi</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <button type="submit">Accedi</button>
+    </form>
+    <p class="switch">
+        <a href="{% url 'core:login' %}">Login Viaggiatore</a> ·
+        <a href="{% url 'core:controller_login' %}">Login Controllore</a>
+    </p>
+    <p class="switch"><b>Account demo:</b> admin@marchemobility.it / admin123</p>
+</body>
+</html>
