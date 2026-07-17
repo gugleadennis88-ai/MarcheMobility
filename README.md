@@ -17,7 +17,6 @@ Il primo avvio crea automaticamente il database (SQLite, un singolo file
 account demo per ciascuno dei tre ruoli (Viaggiatore, Controllore,
 Admin).
 
-Una cosa importante da notare è che il mockup non corrisponderà all’interfaccia grafica finale del sito. Riprodurre fedelmente il design richiederebbe competenze avanzate di Front-End Development, che né io (Dennis) né Damiano possediamo al momento.
 
 ## Perche' SQLite, e non PostgreSQL/Docker come descritto nella tesina?
 
